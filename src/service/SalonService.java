@@ -3,66 +3,88 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.Comanda;
+import domain.Empleado;
 import domain.Menu;
 import domain.Mesa;
 import domain.Mozo;
+import test.MenuHelper;
 import test.MesaHelper;
 
 public class SalonService {
 
 	//metodos
 	
-	//	  + agregarMesa()
-	//    + borrarMesa()
-	//    + asignarMesa(Mozo, Mesa)
-	//    + agregarMenu(Menu)
+	//	  + agregarMesa() ----ok
+	//    + borrarMesa()----ok
+	//    + asignarMesa(Mozo, Mesa) ------para qué este método??
+	//    + agregarMenu(Menu)----ok
 	//
 	//    +pedidosPorCocinero()
-	//    +pedidoConMasBebidas()
+	//    +pedidoConMasConsumibles()
 
-
+	private List<Empleado> empleados = new ArrayList<Empleado>();
 	private List<Mesa> mesas= new ArrayList<Mesa>();
+	private List<Menu> menues = new ArrayList<Menu>();
+	private List<Comanda> comandas = new ArrayList<Comanda>();
+
 
 	public void agregarMesa(Mesa mesa) {
-		
-		MesaService mesaService = new MesaService();
-		
-		Mesa Mesax2N1 = MesaHelper.crearMesaX2(mesaService);
-		Mesa Mesax2N2 = MesaHelper.crearMesaX2(mesaService);
-		Mesa Mesax4N3 = MesaHelper.crearMesaX4(mesaService);
-		Mesa Mesax4N4 = MesaHelper.crearMesaX4(mesaService);
-		Mesa Mesax6N5 = MesaHelper.crearMesaX6(mesaService);
-		Mesa Mesax6N6 = MesaHelper.crearMesaX6(mesaService);
-		
-		mesas.add(Mesax2N1);
-		mesas.add(Mesax2N2);
-		mesas.add(Mesax4N3);
-		mesas.add(Mesax4N4);
-		mesas.add(Mesax6N5);
-		mesas.add(Mesax6N6);
-
-	}
-
-	public String borrarMesa(Integer numero) {
-		for (Mesa mesa : mesas) {
-			if (mesa.getNumero() == numero) {
-				mesas.remove(mesa);
-				return "Se borró la mesa número: " + numero;
-			}
-		}
-		return "No se encuentra el número de mesa: " + numero;
-
+		mesas.add(mesa);
+	}	
+	
+	public void borrarMesa(Mesa mesa) {
+			mesas.remove(mesa);
+			System.out.println("Se borró la mesa: " + mesa);
 	}
 	
-	public void asignarMesa(Mozo Mesa) {
-		
-	}
+
+
 	
-	private List<Menu> menues = new ArrayList<Menu>();
+	//falta....
+//	public void asignarMesa(String nombre, List<Mesa> mesas) {
+//		Mozo mozo =  null;
+//		if (mozo != null)
+//			if (mozo.getNombre().equalsIgnoreCase(nombre)) {
+//				mozo.setMesas((List<Mesa>) mesas);
+//				System.out.println("El mozo " + nombre + "atenderá la mesa ");
+//			} else {
+//				System.out.println("No existe el mozo");
+//			}
+//	}
+	
+//	public Empleado asignarMesa(Integer legajo, Mesa mesa) {
+//		Empleado mozo = null;
+//		//Integer numLegajo = 0;
+//		for (Empleado empleado : empleados) {
+//			if (empleado instanceof Mozo) {
+//				if (((Mozo) empleado).getLegajo().equals(legajo))  {
+//					mozo = mozo.setLegajo(legajo);
+//					return mozo;
+//				}
+//			}
+	
+//			if (empleado.getLegajo().equals(mozo.getLegajo()) ) {
+//				mozo = empleado;
+//				//return numLegajo;
+//				return mozo;
+//			}
+//		}
+//		return null;
+//	}
+	
 
 	public void agregarMenu(Menu menu) {
-		MenuService menuService = new MenuService(null);
+		menues.add(menu);
+	}
 
+	public Double pedidosPorCocinero() {
+		//legajo, nombre y total de comandas atendidas
+		return 0.0;
+	}
+	
+	public void pedidoConMasConsumibles() {
+		//mostrar comanda que + num de consumibles tenga, obtenido de List<Comandas>
 	}
 	
 

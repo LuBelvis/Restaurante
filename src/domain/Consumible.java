@@ -17,6 +17,10 @@ public abstract class Consumible {
 	public Double getPrecio() {
 		return precio;
 	}
+
+	public Double setPrecio(Double precio) {
+		return this.precio = precio;
+	}
 	
 	
 	

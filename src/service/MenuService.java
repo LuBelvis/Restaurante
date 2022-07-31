@@ -6,6 +6,9 @@ import java.util.List;
 import domain.Consumible;
 import domain.Menu;
 import domain.Plato;
+import domain.Salon;
+import test.ConsumibleHelper;
+import test.MenuHelper;
 
 public class MenuService {
 
@@ -20,8 +23,7 @@ public class MenuService {
 	//	+ obtenerPlatos(Menu)
 	
 	private ConsumibleService consumibleService;
-	private List<Consumible> consumibles = new ArrayList <Consumible>();
-
+	
 	public MenuService(ConsumibleService consumibleService) {
 		this.consumibleService = consumibleService;
 	}
@@ -29,26 +31,57 @@ public class MenuService {
 	public Menu crearMenu(String tipoMenu) {
 		return new Menu (tipoMenu);
 	}
-	
-	public void agregarConsumible(Menu menu, Consumible consumible) {
-		
-		Plato plato1 = consumibleService.crearPlato("Burger", 1100.0, "Hamburguesa 100% carne vacuna con papas fritas", false, false);
-		Plato plato2 = consumibleService.crearPlato("VeggieBurger", 1200.0, "Hamburguesa de lentejas con calabaza fritas", true, false);
-		Plato plato3 =consumibleService.crearPlato("Fideos", 900.0, "Fideos con bolognesa", false, false);
-		Plato plato4 =consumibleService.crearPlato("CeliBurger", 1300.0, "Hamburguesa 100% carne vacuna con papas fritas en pan de papa", false, true);
-		Plato plato5 =consumibleService.crearPlato("FideosVeggie", 950.0, "Fideos con salsa de tomate", true, false);
-		Plato plato6 =consumibleService.crearPlato("FideosCeliacos", 980.0, "Fideos de arroz con salsa de tomate", false, true);
-		Plato plato7 =consumibleService.crearPlato("Salad", 1050.0, "Ensalada Griega", true, true);
-		Plato plato8 =consumibleService.crearPlato("TunaSalad", 1150.0, "Ensalada Atún", false, true);
-		
-		consumibles.add(plato1);
-		consumibles.add(plato2);
-		consumibles.add(plato3);
-		consumibles.add(plato4);
-		consumibles.add(plato5);
-		consumibles.add(plato6);
-		consumibles.add(plato7);
-		consumibles.add(plato8);
+
+	public void agregarConsumibleAlMenu(Menu menu, Consumible consumible) {
+		for (Consumible consum : menu.getConsumibles()) {
+			if (consum.getNombre().equals(consumible.getNombre())) {
+				System.out.println("algo");
+			}
+		}
+		System.out.println("nada");
 
 	}
+		//Menu menu = null;
+//		if (menu.getTipoMenu()!= null) {
+//			menu.getConsumibles().add(consumible);
+//			System.out.println("consumible " + consumible.getNombre());
+//			}else {
+//				System.out.println("no existe");
+//	
+//			}
+//		}
+
+//		if (menu.getTipoMenu() == "ejecutivo") {
+//			consumible = consumibleService.crearPlato("Burger", 1100.0, "Hamburguesa 100% carne vacuna con papas fritas", false, false);
+//		menu.getConsumibles().add(consumible);
+//		System.out.println(consumible);
+//		}else {
+//			System.out.println("no existe");
+//
+//		}
+		
+//	public Consumible obtenerPlatos(Menu menu) {
+//		for (Consumible plato : menu.getConsumibles()) {
+//			if (plato != null) {
+//				return plato;
+//			}
+//		}
+//		return null;
+//	}
+
+	public Menu obtenerPlatos(Menu menu) {
+		try {
+			for (Menu platos : Salon.getMenues()) {	
+			if (platos != null) {
+				
+					return platos;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
+	
+

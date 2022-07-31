@@ -2,13 +2,15 @@ package domain;
 
 public class Bebida extends Consumible {
 
+
 	private Double tamanioCc;
 	private Boolean alcoholSi;
 	
 	
-	public Bebida(String nombre, Double precio, Double tamanioCc) {
+	public Bebida(String nombre, Double precio, Double tamanioCc, Boolean alcoholSi) {
 		super(nombre, precio);
 		this.tamanioCc = tamanioCc;
+		this.alcoholSi = false;
 	}
 	
 	public Double getTamanioCc() {
@@ -27,4 +29,9 @@ public class Bebida extends Consumible {
 		return (alcoholSi != null) ? alcoholSi : false; //no sé si está bien..?
 	}
 	
+	@Override
+	public String toString() {
+		return "Bebida [tamanioCc=" + tamanioCc + ", alcoholSi=" + alcoholSi + ", nombre=" + nombre + ", precio="
+				+ precio + "]";
+	}
 }

@@ -20,8 +20,17 @@ public abstract class Empleado {
 		return legajo;
 	}
 
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+
 	public Integer getFechaDeIngreso() {
 		return fechaDeIngreso;
+	}
+
+	@Override
+	public String toString() {
+		return "Empleado [nombre=" + nombre + ", legajo=" + legajo + ", fechaDeIngreso=" + fechaDeIngreso + "]";
 	}
 	
 	

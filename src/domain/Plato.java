@@ -33,6 +33,12 @@ public class Plato extends Consumible {
 		this.aptoCeliaco = aptoCeliaco;
 	}
 
+	@Override
+	public String toString() {
+		return "Plato [descripcion=" + descripcion + ", aptoVegano=" + aptoVegano + ", aptoCeliaco=" + aptoCeliaco
+				+ ", nombre=" + nombre + ", precio=" + precio + "]";
+	}
+
 	
 	
 	
