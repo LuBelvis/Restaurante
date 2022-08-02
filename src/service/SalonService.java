@@ -8,6 +8,7 @@ import domain.Empleado;
 import domain.Menu;
 import domain.Mesa;
 import domain.Mozo;
+import domain.Salon;
 import test.MenuHelper;
 import test.MesaHelper;
 
@@ -23,18 +24,18 @@ public class SalonService {
 	//    +pedidosPorCocinero()
 	//    +pedidoConMasConsumibles()
 
-	private List<Empleado> empleados = new ArrayList<Empleado>();
-	private List<Mesa> mesas= new ArrayList<Mesa>();
-	private List<Menu> menues = new ArrayList<Menu>();
-	private List<Comanda> comandas = new ArrayList<Comanda>();
+//	private List<Empleado> empleados = new ArrayList<Empleado>();
+//	private List<Mesa> mesas= new ArrayList<Mesa>();
+//	private List<Menu> menues = new ArrayList<Menu>();
+//	private List<Comanda> comandas = new ArrayList<Comanda>();
 
 
 	public void agregarMesa(Mesa mesa) {
-		mesas.add(mesa);
+		Salon.getMesas().add(mesa);
 	}	
 	
 	public void borrarMesa(Mesa mesa) {
-			mesas.remove(mesa);
+		Salon.getMesas().remove(mesa);
 			System.out.println("Se borró la mesa: " + mesa);
 	}
 	
@@ -75,7 +76,7 @@ public class SalonService {
 	
 
 	public void agregarMenu(Menu menu) {
-		menues.add(menu);
+		Salon.getMenues().add(menu);
 	}
 
 	public Double pedidosPorCocinero() {

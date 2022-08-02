@@ -11,19 +11,16 @@ public class Comanda {
 	Mozo mozo;
 	Cocinero cocinero;
 	FormaPago formaPago;
-	private List<Consumible> consumibles = new ArrayList <Consumible>();
+	private List<Consumible> consumibles = new ArrayList <Consumible>(); //debe ser la misma que en Menu?
 
 	
-	public Comanda(Menu menu, Mesa mesa, Mozo mozo, Cocinero cocinero,
-			FormaPago formaPago) {
+	public Comanda(Menu menu, Mesa mesa, Mozo mozo, Cocinero cocinero, FormaPago formaPago) {
 		this.menu = menu;
 		this.mesa = mesa;
 		this.mozo = mozo;
 		this.cocinero = cocinero;
 		this.formaPago = formaPago;
 	}
-
-	
 
 	public Menu getMenu() {
 		return menu;
@@ -32,9 +29,16 @@ public class Comanda {
 	public List<Consumible> getConsumibles() {
 		return consumibles;
 	}
+//	public static List<Consumible> getConsumibles(Menu tipoMenu) {
+//		return Menu.getConsumibles();
+//	}
 
 	public Mesa getMesa() {
 		return mesa;
+	}
+
+	public void setConsumibles(Consumible consumible) {
+		this.consumibles.add(consumible);
 	}
 
 	public Mozo getMozo() {

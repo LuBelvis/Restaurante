@@ -5,27 +5,30 @@ import java.util.List;
 
 import domain.Bebida;
 import domain.Consumible;
-import domain.Mesa;
+import domain.Menu;
 import domain.Plato;
 
 public class ConsumibleService {
 
-	//	+ crearPlato()
-	//	+ crearBebida()
-	//	+ modificarPlato() //para poder cambiar el precio
-	//	+ modificarBebida()
-	//	+ borrarPlato()
-	//	+ borrarBebida()
-	private List<Consumible> consumibles = new ArrayList <Consumible>();
+	//	+ crearPlato()---ok
+	//	+ crearBebida()----ok
+	//	+ modificarPlato() //para poder cambiar el precio----ok
+	//	+ modificarBebida()---ok
+	//	+ borrarPlato()---ok
+	//	+ borrarBebida()---ok
+	private List<Consumible> consumibles = new ArrayList<Consumible>();
 
+	public List<Consumible> getConsumibles() {
+		return consumibles;
+	}
 	
 	public Consumible crearPlato(String nombre, Double precio, String descripcion, Boolean aptoVegano, Boolean aptoCeliaco) {
-		consumibles.add(new Plato(nombre, precio, descripcion, aptoVegano, aptoCeliaco));
+		this.consumibles.add(new Plato(nombre, precio, descripcion, aptoVegano, aptoCeliaco));
 		return new Plato(nombre, precio, descripcion, aptoVegano, aptoCeliaco);		
 	}
 	
 	public Consumible crearBebida(String nombre, Double precio, Double tamanioCc, Boolean alcoholSi) {
-		consumibles.add(new Bebida(nombre, precio, tamanioCc, alcoholSi));
+		this.consumibles.add(new Bebida(nombre, precio, tamanioCc, alcoholSi));
 		return new Bebida(nombre, precio, tamanioCc, alcoholSi);
 	}
 	
