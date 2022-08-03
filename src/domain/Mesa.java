@@ -36,6 +36,10 @@ public class Mesa {
 		this.ocupado = ocupado;
 	}
 
+	public boolean isOcupado() {
+		return (ocupado != null) ? ocupado : false;
+	}
+	
 	@Override
 	public String toString() {
 		return "Mesa [numero=" + numero + ", cantidadComensales=" + cantidadComensales + ", ocupado=" + ocupado + "]";

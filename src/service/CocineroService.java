@@ -5,12 +5,13 @@ import domain.Comanda;
 import domain.Empleado;
 import domain.Salon;
 
-public class CocineroService {
+ class CocineroService {
 
 //	+ recibeServicio(Comanda)
 //	+ despachaServicio(Comanda)
 	
-//	public Empleado recibePedido(Comanda comanda) {
+	public void recibePedido(Integer IdComanda) {
+	
 //		for (Cocinero cocinero : Salon.getEmpleados()) {
 //			if(comanda.getCocinero() !=null) {
 //				cocinero.setTienePedido(true);
@@ -19,9 +20,9 @@ public class CocineroService {
 //			}
 //		}
 //		return ;
-//	}
+	}
 	
-	public void despacharPedido(Comanda comanda) {
+	public void despacharPedido(Integer IdComanda) {
 		
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import domain.Consumible;
 import domain.Menu;
 import domain.Plato;
+import domain.TipoMenu;
 import domain.Bebida;
 
 public class MenuService {
@@ -17,7 +18,7 @@ public class MenuService {
 	private MenuService() {
 	}
 
-	public synchronized static MenuService getInstance() {
+	public static MenuService getInstance() {
 		if (instance == null) {
 			instance = new MenuService();
 		}
@@ -28,30 +29,32 @@ public class MenuService {
 		return menues;
 	}
 
-	public void addMenu(List<Consumible> consumibleService, String tipoMenu) {
-		menues.add(new Menu(consumibleService, tipoMenu));
+	public void crearMenu(Integer idMenu,TipoMenu tipoMenu) {
+
+		menues.add(new Menu(idMenu, tipoMenu));
 	}
 
-	public void agregarConsumibleAlMenu(String tipo, String nombre) {
+	public void agregarConsumibleAlMenu(Integer idMenu, String nombre) {
 
 		Consumible consumible = consumibleService.buscarConsumiblePorNombre(nombre);
-		Menu menu = buscarMenuPorTipo(tipo);
-
+		Menu menu = buscarMenuPorId(idMenu);
+		
 		menu.addConsumible(consumible);
+	
 	}
 
-	public void borrarConsumible(String tipo, String nombre) {
+	public void borrarConsumible(Integer idMenu, String nombre) {
 
 		Consumible consumible = consumibleService.buscarConsumiblePorNombre(nombre);
 
-		Menu menu = buscarMenuPorTipo(tipo);
+		Menu menu = buscarMenuPorId(idMenu);
 
 		menu.getConsumibles().remove(consumible);
 	}
 
-	public List<Consumible> obtenerPlatos(String tipo) {
+	public List<Consumible> obtenerPlatos(Integer idMenu) {
 
-		Menu menu = buscarMenuPorTipo(tipo);
+		Menu menu = buscarMenuPorId(idMenu);
 
 		List<Consumible> platos = new ArrayList<Consumible>();
 
@@ -65,9 +68,9 @@ public class MenuService {
 		return platos;
 	}
 
-	public List<Consumible> obtenerBebidas(String tipo) {
+	public List<Consumible> obtenerBebidas(Integer idMenu) {
 
-		Menu menu = buscarMenuPorTipo(tipo);
+		Menu menu = buscarMenuPorId(idMenu);
 
 		List<Consumible> bebidas = new ArrayList<Consumible>();
 
@@ -81,13 +84,14 @@ public class MenuService {
 		return bebidas;
 	}
 
-	public Menu buscarMenuPorTipo(String tipoMenu) {
+	
+	public Menu buscarMenuPorId(Integer idMenu) {
 
 		Menu resultado = null;
 
 		for (Menu menu : menues) {
 
-			if (menu.getTipoMenu().equalsIgnoreCase(tipoMenu)) {
+			if (menu.getIdMenu() == idMenu) {
 
 				resultado = menu;
 			}

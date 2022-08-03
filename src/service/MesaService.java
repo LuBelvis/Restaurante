@@ -13,7 +13,7 @@ public class MesaService {
 	private MesaService() {
 	}
 
-	public synchronized static MesaService getInstance() {
+	public static MesaService getInstance() {
 		if (instance == null) {
 			instance = new MesaService();
 		}
@@ -68,7 +68,7 @@ public class MesaService {
 	}
 
 	private Integer obtenerUltimoNumero() {
-		Integer resultado = null;
+		Integer resultado = 1;
 		int numero = 0;
 		int mayor = 0;
 
@@ -81,9 +81,29 @@ public class MesaService {
 				mayor = numero;
 			}
 
-			resultado = mayor;
+			resultado = mayor+1;
 		}
 
 		return resultado;
+	}
+	
+	public boolean verEstado(Mesa mesa) {
+		return mesa.isOcupado();
+	}
+	
+	public void mostrar(Mesa mesa) {
+		StringBuilder str = new StringBuilder();
+		str.append("Mesa");
+		str.append("\n");
+		str.append("número : ");
+		str.append(mesa.getNumero());
+		str.append("\n");
+		str.append("cantidad comensales: ");
+		str.append(mesa.getCantidadComensales());
+		str.append("\n");
+		str.append("ocupada: ");
+		str.append(mesa.isOcupado());
+		str.append("\n");
+		System.out.println(str.toString());
 	}
 }

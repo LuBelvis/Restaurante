@@ -10,6 +10,8 @@ import domain.FormaPago;
 import domain.Menu;
 import domain.Mesa;
 import domain.Mozo;
+import domain.TipoMenu;
+import domain.Plato;
 
 public class ComandaService {
 
@@ -21,10 +23,11 @@ public class ComandaService {
 
 	private List<Comanda> comandas = new ArrayList<Comanda>();
 
+
 	private ComandaService() {
 	}
 
-	public synchronized static ComandaService getInstance() {
+	public static ComandaService getInstance() {
 		if (instance == null) {
 			instance = new ComandaService();
 		}
@@ -36,15 +39,15 @@ public class ComandaService {
 		return comandas;
 	}
 
-	public void crearComanda(String tipoMenu, Integer numeroMesa, Integer legajoMozo, Integer legajoCocinero,
+	public void crearComanda(Integer idMenu, Integer numeroMesa, Integer legajoMozo, Integer legajoCocinero,
 			FormaPago formaPago) {
-
-		Menu menu = menuService.buscarMenuPorTipo(tipoMenu);
+		
+		Integer id = obtenerUltimoNumero();
+		Menu menu = menuService.buscarMenuPorId(idMenu);
 		Mesa mesa = mesaService.buscarMesaPorNumero(numeroMesa);
 		Mozo mozo = (Mozo) empleadoService.buscarEmpleadoPorLegajo(legajoMozo);
 		Cocinero cocinero = (Cocinero) empleadoService.buscarEmpleadoPorLegajo(legajoCocinero);
-		Integer id = obtenerUltimoNumero();
-
+		
 		comandas.add(new Comanda(id, menu, mesa, mozo, cocinero, formaPago));
 	}
 
@@ -52,9 +55,17 @@ public class ComandaService {
 
 		Consumible consumible = consumibleService.buscarConsumiblePorNombre(nombre);
 		Comanda comanda = buscarComandaPorId(idComanda);
-
-		comanda.addConsumible(consumible);
-
+		
+		for (Consumible plato : menuService.obtenerPlatos(comanda.getMenu().getIdMenu())) {
+			if (plato.getNombre().equals(nombre)) {
+				comanda.addConsumible(consumible);
+			}
+		}
+		for (Consumible bebida : menuService.obtenerBebidas(comanda.getMenu().getIdMenu())) {
+			if (bebida.getNombre().equals(nombre)) {
+				comanda.addConsumible(consumible);
+			}
+		}
 	}
 
 	public void calcularTotal(Comanda comanda, FormaPago formaPago) {
@@ -73,7 +84,7 @@ public class ComandaService {
 	}
 
 	private Integer obtenerUltimoNumero() {
-		Integer resultado = null;
+		Integer resultado = 1;
 		int numero = 0;
 		int mayor = 0;
 
@@ -86,9 +97,9 @@ public class ComandaService {
 				mayor = numero;
 			}
 
-			resultado = mayor;
+			resultado = mayor+1;
 		}
-
+		System.out.println(resultado);
 		return resultado;
 	}
 

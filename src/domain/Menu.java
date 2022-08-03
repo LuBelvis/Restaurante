@@ -1,30 +1,39 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
 
-	private List<Consumible> consumibles;
-	private String tipoMenu;
+	private Integer idMenu;
+	private List<Consumible> consumibles = new ArrayList<Consumible>();
+	private TipoMenu tipoMenu;
 
-	public Menu(List<Consumible> consumibles, String tipoMenu) {
-		this.consumibles = consumibles;
+	public Menu(Integer idMenu, TipoMenu tipoMenu) {
+		this.idMenu = idMenu;
 		this.tipoMenu = tipoMenu;
 	}
 
+	public Integer getIdMenu() {
+		return idMenu;
+	}
 	public List<Consumible> getConsumibles() {
 		return consumibles;
 	}
 
-	public String getTipoMenu() {
+	public TipoMenu getTipoMenu() {
 		return tipoMenu;
+	}
+	
+	public void setIdMenu(Integer idMenu) {
+		this.idMenu = idMenu;
 	}
 
 	public void setConsumibles(List<Consumible> consumibles) {
 		this.consumibles = consumibles;
 	}
 
-	public void setTipoMenu(String tipoMenu) {
+	public void setTipoMenu(TipoMenu tipoMenu) {
 		this.tipoMenu = tipoMenu;
 	}
 

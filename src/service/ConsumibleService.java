@@ -2,7 +2,6 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import domain.Bebida;
 import domain.Consumible;
 import domain.Plato;
@@ -15,7 +14,7 @@ public class ConsumibleService {
 	private ConsumibleService() {
 	}
 
-	public synchronized static ConsumibleService getInstance() {
+	public static ConsumibleService getInstance() {
 		if (instance == null) {
 			instance = new ConsumibleService();
 		}
@@ -78,6 +77,15 @@ public class ConsumibleService {
 			System.out.println(consumible);
 		}
 	}
+	
+	public List<Consumible> devolverListaConsumibles() {
+
+		for (Consumible consumible : consumibles) {
+
+			System.out.println(consumible);
+		}
+		return consumibles;
+	}
 
 	public String borrarPlato(String nombre) {
 
@@ -129,5 +137,6 @@ public class ConsumibleService {
 
 		return resultado;
 	}
+
 
 }
