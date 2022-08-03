@@ -1,11 +1,10 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mozo extends Empleado {
-	
-	private List<Mesa> mesas= new ArrayList<Mesa>();
+
+	private List<Mesa> mesas;
 
 	public Mozo(String nombre, Integer legajo, Integer fechaDeIngreso) {
 		super(nombre, legajo, fechaDeIngreso);
@@ -19,5 +18,4 @@ public class Mozo extends Empleado {
 		this.mesas = mesas;
 	}
 
-	
 }

@@ -2,19 +2,19 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Comanda {
 
-	Menu menu;
-	Mesa mesa;
-	Mozo mozo;
-	Cocinero cocinero;
-	FormaPago formaPago;
-	private List<Consumible> consumibles = new ArrayList <Consumible>(); //debe ser la misma que en Menu?
+	private Integer id;
+	private Menu menu;
+	private Mesa mesa;
+	private Mozo mozo;
+	private Cocinero cocinero;
+	private FormaPago formaPago;
+	private List<Consumible> consumibles = new ArrayList<Consumible>();
 
-	
-	public Comanda(Menu menu, Mesa mesa, Mozo mozo, Cocinero cocinero, FormaPago formaPago) {
+	public Comanda(Integer id, Menu menu, Mesa mesa, Mozo mozo, Cocinero cocinero, FormaPago formaPago) {
+		this.id = id;
 		this.menu = menu;
 		this.mesa = mesa;
 		this.mozo = mozo;
@@ -22,23 +22,16 @@ public class Comanda {
 		this.formaPago = formaPago;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
 	public Menu getMenu() {
 		return menu;
 	}
 
-	public List<Consumible> getConsumibles() {
-		return consumibles;
-	}
-//	public static List<Consumible> getConsumibles(Menu tipoMenu) {
-//		return Menu.getConsumibles();
-//	}
-
 	public Mesa getMesa() {
 		return mesa;
-	}
-
-	public void setConsumibles(Consumible consumible) {
-		this.consumibles.add(consumible);
 	}
 
 	public Mozo getMozo() {
@@ -52,36 +45,40 @@ public class Comanda {
 	public FormaPago getFormaPago() {
 		return formaPago;
 	}
-	
+
+	public List<Consumible> getConsumibles() {
+		return consumibles;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
+	public void setMozo(Mozo mozo) {
+		this.mozo = mozo;
+	}
+
+	public void setCocinero(Cocinero cocinero) {
+		this.cocinero = cocinero;
+	}
+
 	public void setFormaPago(FormaPago formaPago) {
 		this.formaPago = formaPago;
 	}
 
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cocinero, consumibles, formaPago, menu, mesa, mozo);
+	public void setConsumibles(List<Consumible> consumibles) {
+		this.consumibles = consumibles;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Comanda other = (Comanda) obj;
-		return Objects.equals(cocinero, other.cocinero) && Objects.equals(consumibles, other.consumibles)
-				&& formaPago == other.formaPago && Objects.equals(menu, other.menu) && Objects.equals(mesa, other.mesa)
-				&& Objects.equals(mozo, other.mozo);
+	public void addConsumible(Consumible consumible) {
+		consumibles.add(consumible);
 	}
-
-
-	@Override
-	public String toString() {
-		return "Comanda [menu=" + menu + ", mesa=" + mesa + ", mozo=" + mozo + ", cocinero=" + cocinero + ", formaPago="
-				+ formaPago + ", consumibles=" + consumibles + "]";
-	}
-	
 }

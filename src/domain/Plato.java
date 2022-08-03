@@ -2,21 +2,21 @@ package domain;
 
 public class Plato extends Consumible {
 
-	private String descripcion; //fideos con salsa, milanesa con pure..
+	private String descripcion;
 	private Boolean aptoVegano;
 	private Boolean aptoCeliaco;
-	
-	public Plato(String nombre, Double precio, String descripcion,  Boolean aptoVegano, Boolean aptoCeliaco) {
+
+	public Plato(String nombre, Double precio, String descripcion, Boolean aptoVegano, Boolean aptoCeliaco) {
 		super(nombre, precio);
 		this.descripcion = descripcion;
 		this.aptoVegano = true;
 		this.aptoCeliaco = true;
 	}
-	
+
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
+
 	public Boolean getAptoVegano() {
 		return aptoVegano;
 	}
@@ -39,8 +39,4 @@ public class Plato extends Consumible {
 				+ ", nombre=" + nombre + ", precio=" + precio + "]";
 	}
 
-	
-	
-	
-	
 }

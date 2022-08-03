@@ -1,63 +1,99 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.Consumible;
 import domain.Menu;
+import domain.Plato;
+import domain.Bebida;
 
 public class MenuService {
 
-	// - ConsumibleService cs
-	//
-	// + MenuService(ConsumibleService) //constructor
-	//
-	// + crearMenu() //llaman a los new de las clases que necesito instanciar
-	// + agregarConsumible(Menu, cs.crearPlato) ----ok
-	// + borrarConsumible(Menu, Consumible) ---ok, creo
-	// + obtenerBebidas(Menu) ----ok
-	// + obtenerPlatos(Menu) ----ok
+	private static MenuService instance;
+	private ConsumibleService consumibleService = ConsumibleService.getInstance();
+	private List<Menu> menues = new ArrayList<Menu>();
 
-	private ConsumibleService consumibleService = new ConsumibleService();
-
-	public Menu crearMenu(String tipoMenu, List<Consumible> consumibleService) {
-		return new Menu(tipoMenu, consumibleService);
+	private MenuService() {
 	}
 
-	public void agregarConsumibleAlMenu(Menu menu, String nombre) {
-		for (Consumible consumible : consumibleService.getConsumibles()) {
-			if (consumible.getNombre().equals(nombre)) {
-				consumibleService.getConsumibles().add(consumible);
-			}
+	public synchronized static MenuService getInstance() {
+		if (instance == null) {
+			instance = new MenuService();
 		}
+		return instance;
 	}
 
-	public String borrarConsumible(String nombre) {
-		for (Consumible consumible : consumibleService.getConsumibles()) {
-			if (consumible.getNombre().equals(nombre)) {
-				consumibleService.getConsumibles().remove(consumible);
-				return "Se borró el consumible: " + nombre;
-			}
-		}
-		return "No se encuentra el consumible: " + nombre;
-
+	public List<Menu> getMenues() {
+		return menues;
 	}
 
-	public Consumible obtenerPlatos(Menu menu) {
+	public void addMenu(List<Consumible> consumibleService, String tipoMenu) {
+		menues.add(new Menu(consumibleService, tipoMenu));
+	}
+
+	public void agregarConsumibleAlMenu(String tipo, String nombre) {
+
+		Consumible consumible = consumibleService.buscarConsumiblePorNombre(nombre);
+		Menu menu = buscarMenuPorTipo(tipo);
+
+		menu.addConsumible(consumible);
+	}
+
+	public void borrarConsumible(String tipo, String nombre) {
+
+		Consumible consumible = consumibleService.buscarConsumiblePorNombre(nombre);
+
+		Menu menu = buscarMenuPorTipo(tipo);
+
+		menu.getConsumibles().remove(consumible);
+	}
+
+	public List<Consumible> obtenerPlatos(String tipo) {
+
+		Menu menu = buscarMenuPorTipo(tipo);
+
+		List<Consumible> platos = new ArrayList<Consumible>();
+
 		for (Consumible plato : menu.getConsumibles()) {
-			if (plato != null) {
-				return plato;
+
+			if (plato instanceof Plato) {
+
+				platos.add(plato);
 			}
 		}
-		return null;
+		return platos;
 	}
 
-	public Consumible obtenerBebidas(Menu menu) {
+	public List<Consumible> obtenerBebidas(String tipo) {
+
+		Menu menu = buscarMenuPorTipo(tipo);
+
+		List<Consumible> bebidas = new ArrayList<Consumible>();
+
 		for (Consumible bebida : menu.getConsumibles()) {
-			if (bebida != null) {
-				return bebida;
+
+			if (bebida instanceof Bebida) {
+
+				bebidas.add(bebida);
 			}
 		}
-		return null;
+		return bebidas;
+	}
+
+	public Menu buscarMenuPorTipo(String tipoMenu) {
+
+		Menu resultado = null;
+
+		for (Menu menu : menues) {
+
+			if (menu.getTipoMenu().equalsIgnoreCase(tipoMenu)) {
+
+				resultado = menu;
+			}
+		}
+
+		return resultado;
 	}
 
 }
