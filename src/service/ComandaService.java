@@ -6,13 +6,11 @@ import java.util.List;
 import domain.Cocinero;
 import domain.Comanda;
 import domain.Consumible;
+import domain.Empleado;
 import domain.FormaPago;
-import domain.Matematica;
 import domain.Menu;
 import domain.Mesa;
 import domain.Mozo;
-import domain.TipoMenu;
-import domain.Plato;
 
 public class ComandaService {
 
@@ -23,7 +21,6 @@ public class ComandaService {
 	private ConsumibleService consumibleService = ConsumibleService.getInstance();
 
 	private List<Comanda> comandas = new ArrayList<Comanda>();
-
 
 	private ComandaService() {
 	}
@@ -42,21 +39,24 @@ public class ComandaService {
 
 	public void crearComanda(Integer idMenu, Integer numeroMesa, Integer legajoMozo, Integer legajoCocinero,
 			FormaPago formaPago) {
-		
+
 		Integer id = obtenerUltimoNumero();
 		Menu menu = menuService.buscarMenuPorId(idMenu);
 		Mesa mesa = mesaService.buscarMesaPorNumero(numeroMesa);
-		Mozo mozo = (Mozo) empleadoService.buscarEmpleadoPorLegajo(legajoMozo);
-		Cocinero cocinero = (Cocinero) empleadoService.buscarEmpleadoPorLegajo(legajoCocinero);
-		
-		comandas.add(new Comanda(id, menu, mesa, mozo, cocinero, formaPago));
+		Empleado mozo = empleadoService.buscarEmpleadoPorLegajo(legajoMozo);
+		Empleado cocinero = empleadoService.buscarEmpleadoPorLegajo(legajoCocinero);
+		Comanda comanda = new Comanda(id, menu, mesa, (Mozo) mozo, (Cocinero) cocinero, formaPago);
+
+		comandas.add(comanda);
+
+		System.out.println(comanda);
 	}
 
 	public void agregarConsumible(Integer idComanda, String nombre) {
 
 		Consumible consumible = consumibleService.buscarConsumiblePorNombre(nombre);
 		Comanda comanda = buscarComandaPorId(idComanda);
-		
+
 		for (Consumible plato : menuService.obtenerPlatos(comanda.getMenu().getIdMenu())) {
 			if (plato.getNombre().equals(nombre)) {
 				comanda.addConsumible(consumible);
@@ -83,7 +83,7 @@ public class ComandaService {
 				mayor = numero;
 			}
 
-			resultado = mayor+1;
+			resultado = mayor + 1;
 		}
 		System.out.println(resultado);
 		return resultado;
@@ -101,9 +101,9 @@ public class ComandaService {
 		}
 
 		return resultado;
-	
+
 	}
-	
+
 	public void calcularTotal(Comanda comanda, FormaPago formaPago) {
 
 		Double precioTotal = 0.0;
@@ -117,7 +117,7 @@ public class ComandaService {
 		System.out.println(precioTotal);
 
 	}
-	
+
 //	private void calcularDescuento(String nombre, FormaPago formaPago){
 //		Comanda comanda = buscarComandaPorId(id);
 //		Double descuento = 0.0;

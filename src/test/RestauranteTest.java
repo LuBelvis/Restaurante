@@ -1,18 +1,5 @@
 package test;
 
-import domain.Chef;
-import domain.Cocinero;
-import domain.Comanda;
-import domain.Consumible;
-import domain.Empleado;
-import domain.FormaPago;
-import domain.Menu;
-import domain.Mesa;
-import domain.Mozo;
-import domain.Plato;
-import domain.TipoMenu;
-import service.ComandaService;
-import service.EmpleadoService;
 import service.MenuService;
 import service.MesaService;
 
@@ -22,54 +9,47 @@ public class RestauranteTest {
 
 	public static void main(String[] args) {
 
-		SalonService salonService = SalonService.getInstance(); 
-		
-		
-		System.out.println("***Mesas***");		
+		SalonService salonService = SalonService.getInstance();
+
+		System.out.println("***Mesas***");
 		MesaService mesaService = MesaService.getInstance();
-		
+
 		MesaHelper.crearMesaX2(mesaService);
 		MesaHelper.crearMesaX2(mesaService);
 		MesaHelper.crearMesaX4(mesaService);
 		MesaHelper.crearMesaX4(mesaService);
 		MesaHelper.crearMesaX6(mesaService);
 		MesaHelper.crearMesaX6(mesaService);
-		
+
 		salonService.agregarMesa(1);
 		salonService.agregarMesa(2);
 		salonService.agregarMesa(3);
 		salonService.agregarMesa(4);
 		salonService.agregarMesa(5);
 		salonService.agregarMesa(6);
-		
-		
-		System.out.println("***Menues***");	
+
+		System.out.println("***Menues***");
 		MenuService menuService = MenuService.getInstance();
 
 		MenuHelper.crearMenuNuevo(menuService);
-		
+
 		salonService.agregarMenu(1);
 		salonService.agregarMenu(2);
 		salonService.agregarMenu(3);
 
 		System.out.println("***Empleados***");
-		
-		EmpleadoService empleadoService = EmpleadoService.getInstance();
 
 		EmpleadoHelper.crearEmpleadoNuevo();
-		
+
 		salonService.agregarEmpleados(360);
 		salonService.agregarEmpleados(532);
 		salonService.agregarEmpleados(450);
 		salonService.agregarEmpleados(722);
 		salonService.agregarEmpleados(123);
 
-		
-		System.out.println("***Comandas***");	
-		
-		ComandaService comandaService = ComandaService.getInstance();
+		System.out.println("***Comandas***");
 
-		ComandaHelper.crearComandaNueva(comandaService);
+		ComandaHelper.crearComandaNueva();
 		salonService.agregarComanda(1);
 		mesaService.ocuparMesa(1);
 		salonService.agregarComanda(2);
@@ -85,13 +65,13 @@ public class RestauranteTest {
 
 		mesaService.mostrar(1);
 		mesaService.mostrar(2);
-		
+
 		mesaService.liberarMesa(1);
 
-		System.out.println("***Comandas por Cocinero***");	
+		System.out.println("***Comandas por Cocinero***");
 		salonService.comandasPorCocinero(450);
-		
-		System.out.println("***Comanda con más Consumibles***");	
+
+		System.out.println("***Comanda con más Consumibles***");
 		salonService.comandasConMasConsumibles();
 	}
 }

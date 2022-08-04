@@ -61,15 +61,15 @@ public class EmpleadoService {
 		for (Empleado empleado : empleados) {
 
 			if (empleado.getLegajo() == legajo) {
-
+				System.out.println(empleado);
 				resultado = empleado;
+				System.out.println(empleado);
 			}
 		}
 
 		return resultado;
 	}
 
-	//no creo que lo use
 	public void verEmpleados() {
 
 		for (Empleado empleado : empleados) {

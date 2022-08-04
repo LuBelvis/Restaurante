@@ -2,6 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import domain.TipoMenu;
+
 
 public class Menu {
 

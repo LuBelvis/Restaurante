@@ -13,6 +13,5 @@ public class EmpleadoHelper {
 			empleadoService.registrarCocinero("Damián", 722, 20210810, 3);
 			empleadoService.registrarChef("Francis", 123, 20141020, "chef internacional");
 		
-		
 	}
 }

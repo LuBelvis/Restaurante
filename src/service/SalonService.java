@@ -1,19 +1,10 @@
 package service;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-import domain.Consumible;
 import domain.Empleado;
-import domain.FormaPago;
-import domain.Cocinero;
 import domain.Comanda;
 import domain.Menu;
 import domain.Mesa;
 import domain.Salon;
-import domain.TipoMenu;
 
 public class SalonService {
 
@@ -69,7 +60,7 @@ public class SalonService {
 	}
 
 	public void agregarComanda(Integer id) {
-		
+
 		Comanda comanda = comandaService.buscarComandaPorId(id);
 
 		salon.setComandas(comanda);
@@ -77,7 +68,6 @@ public class SalonService {
 	}
 
 	public Integer comandasPorCocinero(Integer legajo) {
-		Empleado cocinero = empleadoService.buscarEmpleadoPorLegajo(legajo);
 		Integer pedidos = 0;
 
 		for (Comanda comanda : comandaService.getComandas()) {
@@ -95,7 +85,7 @@ public class SalonService {
 
 		for (Comanda comanda : comandaService.getComandas()) {
 
-			if (comanda.getConsumibles().size() > mayor.getConsumibles().size()) {
+			if (mayor == null || comanda.getConsumibles().size() > mayor.getConsumibles().size()) {
 				mayor = comanda;
 			}
 		}
@@ -103,6 +93,7 @@ public class SalonService {
 		return mayor;
 
 	}
+
 	public void liberarMesa(Integer numeroMesa) {
 		mesaService.liberarMesa(numeroMesa);
 	}
