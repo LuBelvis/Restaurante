@@ -12,9 +12,9 @@ package domain{
 	}
 
 	class Mesa {
-		numero
-		cantidadComensales
-		estado (libre u ocupada)
+		- numero
+		- cantidadComensales
+		 - estado (libre u ocupada)
 	}
 
 	abstract class Empleado{
