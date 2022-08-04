@@ -16,7 +16,7 @@ public class EmpleadoService {
 	private EmpleadoService() {
 	}
 
-	public synchronized static EmpleadoService getInstance() {
+	public static EmpleadoService getInstance() {
 		if (instance == null) {
 			instance = new EmpleadoService();
 		}
@@ -69,6 +69,7 @@ public class EmpleadoService {
 		return resultado;
 	}
 
+	//no creo que lo use
 	public void verEmpleados() {
 
 		for (Empleado empleado : empleados) {

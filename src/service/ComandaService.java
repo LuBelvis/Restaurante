@@ -7,6 +7,7 @@ import domain.Cocinero;
 import domain.Comanda;
 import domain.Consumible;
 import domain.FormaPago;
+import domain.Matematica;
 import domain.Menu;
 import domain.Mesa;
 import domain.Mozo;
@@ -68,21 +69,6 @@ public class ComandaService {
 		}
 	}
 
-	public void calcularTotal(Comanda comanda, FormaPago formaPago) {
-
-		Double precioTotal = 0.0;
-
-		for (Consumible consumible : comanda.getConsumibles()) {
-
-			precioTotal = precioTotal + consumible.getPrecio();
-
-			System.out.println(consumible);
-		}
-
-		System.out.println(precioTotal);
-
-	}
-
 	private Integer obtenerUltimoNumero() {
 		Integer resultado = 1;
 		int numero = 0;
@@ -115,5 +101,31 @@ public class ComandaService {
 		}
 
 		return resultado;
+	
 	}
+	
+	public void calcularTotal(Comanda comanda, FormaPago formaPago) {
+
+		Double precioTotal = 0.0;
+
+		for (Consumible consumible : comanda.getConsumibles()) {
+
+			precioTotal = precioTotal + consumible.getPrecio();
+
+		}
+
+		System.out.println(precioTotal);
+
+	}
+	
+//	private void calcularDescuento(String nombre, FormaPago formaPago){
+//		Comanda comanda = buscarComandaPorId(id);
+//		Double descuento = 0.0;
+//		Double resta = Matematica.restarPorcentaje(null, null);
+//		
+//		if (formaPago == FormaPago.EFECTIVO) {
+//			
+//		}
+//	}
+	//+ liberaMesa(Comanda)
 }

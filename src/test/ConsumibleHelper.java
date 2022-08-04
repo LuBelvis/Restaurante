@@ -4,6 +4,7 @@ import service.ConsumibleService;
 
 public class ConsumibleHelper {
 	
+			
 	public static void crearConsumiblePlato(ConsumibleService consumibleService) {
 		consumibleService.crearPlato("Burger", 1100.0, "Hamburguesa 100% carne vacuna con papas fritas", false, false);
 		consumibleService.crearPlato("VeggieBurger", 1200.0, "Hamburguesa de lentejas con calabaza fritas", true, false);
@@ -20,7 +21,7 @@ public class ConsumibleHelper {
 		consumibleService.crearBebida("Agua", 100.0, 500.0,false);
 		consumibleService.crearBebida("Agua Mineral", 120.0, 1000.0,false);
 		consumibleService.crearBebida("Vino de la casa", 550.0, 500.0,true);
-		consumibleService.crearBebida("Vino Patero", 700.0, 1000.0,true);
+		consumibleService.crearBebida("Vino Blanco", 700.0, 1000.0,true);
 		consumibleService.crearBebida("Cerveza", 400.0, 1000.0,true);
 		consumibleService.crearBebida("Gaseosa", 350.0, 500.0,false);
 	

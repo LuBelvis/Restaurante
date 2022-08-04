@@ -44,12 +44,18 @@ public class MesaService {
 		return mesa;
 	}
 
-	public void ocuparMesa(Mesa mesa) {
+	public void ocuparMesa(Integer numeroMesa) {
+		Mesa mesa = buscarMesaPorNumero(numeroMesa);
 		mesa.setOcupado(true);
 	}
 
-	public void liberarMesa(Mesa mesa) {
+	public void liberarMesa(Integer numeroMesa) {
+		Mesa mesa = buscarMesaPorNumero(numeroMesa);
 		mesa.setOcupado(false);
+	}
+	
+	public boolean estado(Mesa mesa) {
+		return mesa.isOcupado();
 	}
 
 	public Mesa buscarMesaPorNumero(Integer numeroMesa) {
@@ -91,7 +97,8 @@ public class MesaService {
 		return mesa.isOcupado();
 	}
 	
-	public void mostrar(Mesa mesa) {
+	public void mostrar(Integer numeroMesa) {
+		Mesa mesa = buscarMesaPorNumero(numeroMesa);
 		StringBuilder str = new StringBuilder();
 		str.append("Mesa");
 		str.append("\n");

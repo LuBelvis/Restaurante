@@ -12,105 +12,86 @@ import domain.Mozo;
 import domain.Plato;
 import domain.TipoMenu;
 import service.ComandaService;
-import service.ConsumibleService;
 import service.EmpleadoService;
 import service.MenuService;
 import service.MesaService;
+
 import service.SalonService;
 
 public class RestauranteTest {
 
 	public static void main(String[] args) {
 
-		SalonService salonService = new SalonService(); 
+		SalonService salonService = SalonService.getInstance(); 
 		
+		
+		System.out.println("***Mesas***");		
 		MesaService mesaService = MesaService.getInstance();
 		
-		Mesa Mesax2N1 = MesaHelper.crearMesaX2(mesaService);
-		Mesa Mesax2N2 = MesaHelper.crearMesaX2(mesaService);
-		Mesa Mesax4N3 = MesaHelper.crearMesaX4(mesaService);
-		Mesa Mesax4N4 = MesaHelper.crearMesaX4(mesaService);
-		Mesa Mesax6N5 = MesaHelper.crearMesaX6(mesaService);
-		Mesa Mesax6N6 = MesaHelper.crearMesaX6(mesaService);
+		MesaHelper.crearMesaX2(mesaService);
+		MesaHelper.crearMesaX2(mesaService);
+		MesaHelper.crearMesaX4(mesaService);
+		MesaHelper.crearMesaX4(mesaService);
+		MesaHelper.crearMesaX6(mesaService);
+		MesaHelper.crearMesaX6(mesaService);
 		
-//		salonService.agregarMesa(Mesax2N1);
-//		salonService.agregarMesa(Mesax2N2);
-//		salonService.agregarMesa(Mesax4N3);
-//		salonService.agregarMesa(Mesax4N4);
-//		salonService.agregarMesa(Mesax6N5);
-//		salonService.agregarMesa(Mesax6N6);
+		salonService.agregarMesa(1);
+		salonService.agregarMesa(2);
+		salonService.agregarMesa(3);
+		salonService.agregarMesa(4);
+		salonService.agregarMesa(5);
+		salonService.agregarMesa(6);
 		
-		mesaService.mostrar(Mesax6N6);
-//		salonService.borrarMesa(Mesax2N1);
-				
-		ConsumibleService consumibleService = ConsumibleService.getInstance();
 		
-		System.out.println("*****Platos******");
-		//funciona con helper y ya creados los plato y bebidas ahí
-		ConsumibleHelper.crearConsumiblePlato(consumibleService);
-		System.out.println("*****Bebidas******");
-		ConsumibleHelper.crearConsumibleBebida(consumibleService);
-
-		consumibleService.verContenidoConsumiblesDisponibles(); //para ver el List<consumibles>
-		System.out.println("************");
-	//	System.out.println(consumibleService.borrarPlato("Burger")); //ok funciona
-		
-		//creacion Menu
+		System.out.println("***Menues***");	
 		MenuService menuService = MenuService.getInstance();
-		
-//		Menu Ejecutivo = MenuHelper.crearMenuEjecutivo(menuService, consumibleService);
-//		Menu Almuerzo = MenuHelper.crearMenuAlmuerzo(menuService, consumibleService);
-//		Menu Cena = MenuHelper.crearMenuCena(menuService, consumibleService);
 
-//		salonService.agregarMenu(Ejecutivo);
-//		salonService.agregarMenu(Almuerzo);
-//		salonService.agregarMenu(Cena);
-		System.out.println("***Crear Menu******");
-		menuService.crearMenu(1, TipoMenu.ALMUERZO);
-		menuService.crearMenu(2, TipoMenu.ALMUERZO);
+		MenuHelper.crearMenuNuevo(menuService);
+		
+		salonService.agregarMenu(1);
+		salonService.agregarMenu(2);
+		salonService.agregarMenu(3);
 
-		System.out.println("*****agregarConsumibleAlMenu*******");
-		menuService.agregarConsumibleAlMenu(1, "VeggieBurger");
-		menuService.agregarConsumibleAlMenu(1, "Agua");
-		System.out.println("*****obtenerPlatos*******");
-		System.out.println(menuService.obtenerPlatos(1));
+		System.out.println("***Empleados***");
 		
-	   // System.out.println(Menu.getConsumibles());//se imprime array consumibles
-		
-		
-		System.out.println("******Menu******");
-		System.out.println("*****mostrarMenu*******");
-	//	Cena.mostrarMenu(Cena);//funciona pero muestra todos los consumibles
-		
-		System.out.println("******Empleados******");
 		EmpleadoService empleadoService = EmpleadoService.getInstance();
+
+		EmpleadoHelper.crearEmpleadoNuevo();
 		
-		empleadoService.registrarMozo("Sandro", 360, 20150425);
-		empleadoService.registrarMozo("Camila", 532, 20200730);
+		salonService.agregarEmpleados(360);
+		salonService.agregarEmpleados(532);
+		salonService.agregarEmpleados(450);
+		salonService.agregarEmpleados(722);
+		salonService.agregarEmpleados(123);
+
 		
-		empleadoService.registrarCocinero("Germán", 450, 20180502,5);
-		empleadoService.registrarCocinero("Damián", 722, 20210810,3);
-		
-		empleadoService.registrarChef("Francis", 123, 20141020, "chef internacional");
-		
-		empleadoService.verEmpleados();
-		
-		System.out.println("*****Comandas*******");
-	//	System.out.println(salonService.asignarMesa(360, Mesax6N6));
+		System.out.println("***Comandas***");	
 		
 		ComandaService comandaService = ComandaService.getInstance();
-		comandaService.crearComanda(1, 1, 360, 450, FormaPago.EFECTIVO);
-		comandaService.crearComanda(2, 1, 360, 450, FormaPago.EFECTIVO);
 
-		System.out.println("****AgregarConsumible a la Comanda***");
-		comandaService.agregarConsumible(1, "VeggieBurger");
-		comandaService.agregarConsumible(2, "Burger");
+		ComandaHelper.crearComandaNueva(comandaService);
+		salonService.agregarComanda(1);
+		mesaService.ocuparMesa(1);
+		salonService.agregarComanda(2);
+		mesaService.ocuparMesa(2);
+		salonService.agregarComanda(3);
+		mesaService.ocuparMesa(3);
+		salonService.agregarComanda(4);
+		mesaService.ocuparMesa(4);
+		salonService.agregarComanda(5);
+		mesaService.ocuparMesa(5);
+		salonService.agregarComanda(6);
+		mesaService.ocuparMesa(6);
 
-    	System.out.println("****CalcularTotal***");
-    	comandaService.calcularTotal(comandaService.buscarComandaPorId(1), FormaPago.EFECTIVO);
-    	System.out.println("****Comanda1***");
-    	System.out.println(comandaService.buscarComandaPorId(1));
-    	
-	}//main
+		mesaService.mostrar(1);
+		mesaService.mostrar(2);
+		
+		mesaService.liberarMesa(1);
 
+		System.out.println("***Comandas por Cocinero***");	
+		salonService.comandasPorCocinero(450);
+		
+		System.out.println("***Comanda con más Consumibles***");	
+		salonService.comandasConMasConsumibles();
+	}
 }

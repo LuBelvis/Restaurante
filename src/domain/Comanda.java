@@ -50,8 +50,8 @@ public class Comanda {
 		return consumibles;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Integer setId(Integer id) {
+		return id;
 	}
 
 	public void setMenu(Menu menu) {
@@ -81,4 +81,11 @@ public class Comanda {
 	public void addConsumible(Consumible consumible) {
 		consumibles.add(consumible);
 	}
+
+	@Override
+	public String toString() {
+		return "Comanda [id=" + id + ", menu=" + menu + ", mesa=" + mesa + ", mozo=" + mozo + ", cocinero=" + cocinero
+				+ ", formaPago=" + formaPago + ", consumibles=" + consumibles + "]";
+	}
+	
 }

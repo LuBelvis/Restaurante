@@ -1,14 +1,19 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Salon {
 
-	private List<Menu> menues;
-	private List<Mesa> mesas;
-	private List<Empleado> empleados;
-	private List<Comanda> comandas;
+	private List<Menu> menues = new ArrayList<Menu>();
+	private List<Mesa> mesas = new ArrayList<Mesa>();
+	private List<Empleado> empleados = new ArrayList<Empleado>();
+	private List<Comanda> comandas = new ArrayList<Comanda>();
 
+	public Salon() {
+		
+	}
+	
 	public Salon(List<Menu> menues, List<Mesa> mesas, List<Empleado> empleados, List<Comanda> comandas) {
 		this.menues = menues;
 		this.mesas = mesas;
@@ -20,32 +25,32 @@ public class Salon {
 		return menues;
 	}
 
-	public void setMenues(List<Menu> menues) {
-		this.menues = menues;
+	public void setMenues(Menu menu) {
+		menues.add(menu);
 	}
 
 	public List<Mesa> getMesas() {
 		return mesas;
 	}
 
-	public void setMesas(List<Mesa> mesas) {
-		this.mesas = mesas;
+	public void setMesas(Mesa mesa) {
+		mesas.add(mesa);
 	}
 
 	public List<Empleado> getEmpleados() {
 		return empleados;
 	}
 
-	public void setEmpleados(List<Empleado> empleados) {
-		this.empleados = empleados;
+	public void setEmpleados(Empleado empleado) {
+		empleados.add(empleado);
 	}
 
 	public List<Comanda> getComandas() {
 		return comandas;
 	}
 
-	public void setComandas(List<Comanda> comandas) {
-		this.comandas = comandas;
+	public void setComandas(Comanda comanda) {
+		comandas.add(comanda);
 	}
 
 }

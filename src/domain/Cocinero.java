@@ -22,9 +22,7 @@ public class Cocinero extends Empleado{
 	public void setTienePedido(Boolean tienePedido) {
 		this.tienePedido = tienePedido;
 	}
-	public boolean isPedido() {
-		return (tienePedido != null) ? tienePedido : false;
-	}
+
 
 	
 }
